@@ -9,17 +9,13 @@ var data = [
     },
 ];
 
-var itemModel = Backbone.Model.extend(
-    {
-        defaults: item
-    }
-);
+var itemModel = Backbone.Model.extend();
 
-var TodosCollection = Backbone.Collection.extend(data, {
+var TodosCollection = Backbone.Collection.extend({
     model: itemModel
 });
 
-var modelTodo = new Todo();
+var listCollection = new TodosCollection(data);
 
 var ItemView = Backbone.View.extend({
     events: {
@@ -57,13 +53,10 @@ var ListView = Backbone.View.extend({
 
     render: function() {
         var me = this;
-        var items = this.model.get('items');
 
-        data.forEach(function(item, index) {
+        this.model.toJSON().forEach(function(item, index) {
 
-
-
-            var itemModelInstance = new itemModel();
+            var itemModelInstance = new itemModel(item);
 
             var itemView = new ItemView({model: itemModelInstance});
             me.$el.append(itemView.render().el);
@@ -72,4 +65,4 @@ var ListView = Backbone.View.extend({
     },
 });
 
-var ListView = new ListView();
+var ListView = new ListView({model: listCollection});
