@@ -8,13 +8,15 @@
     <div id="todo" style="padding: 5px 10px; border: 2px solid blue;"></div>
 
     <script type="text/x-handlebars-template" id="item-template">
-        {{#if completed}}
-            <input id="todo_complete" type="checkbox" checked="checked">
-        {{else}}
-            <input id="todo_complete" type="checkbox">
-        {{/if}}
+        <div class="todo__item">
+            {{#if completed}}
+                <input id="todoComplete" type="checkbox" checked="checked">
+            {{else}}
+                <input id="todoComplete" type="checkbox">
+            {{/if}}
 
-        {{title}}
+            {{title}}
+        </div>
     </script>
 
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
