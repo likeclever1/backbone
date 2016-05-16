@@ -1,3 +1,18 @@
+var data = [
+    {
+        title: 'title-1',
+        completed: true
+    },
+    {
+        title: 'title-2',
+        completed: false
+    },
+    {
+        title: 'title-3',
+        completed: true
+    }
+];
+
 var TodoModel = Backbone.Model.extend({
     defaults: {
         title: 'title',
@@ -10,8 +25,7 @@ var TodosCollection = Backbone.Collection.extend({
     url: "/todos",
 });
 
-var todosCollection = new TodosCollection();
-todosCollection.fetch();
+var todosCollection = new TodosCollection(data);
 
 var TodoView = Backbone.View.extend({
     el: '#todo',
@@ -35,7 +49,6 @@ var TodoView = Backbone.View.extend({
 
 
         dataSorted.forEach(function(item) {
-            console.log(item['cid']);
             this.$el.append( this.todoTpl( item.toJSON() ) );
         }.bind(this));
 
@@ -48,3 +61,7 @@ var TodoView = Backbone.View.extend({
 });
 
 var todoView = new TodoView({collection: todosCollection});
+
+
+
+
