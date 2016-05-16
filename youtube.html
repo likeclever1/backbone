@@ -18,11 +18,9 @@
     <!-- end .navbar -->
 
     <div class="container">
-        <div class="row">
-            <div class="hero-unit span5">
-                <h2>Events example</h2>
-                <button id="btn" class="btn btn-success">simple button</button>
-            </div>
+        <div class="hero-unit">
+            <h2>My Rocket</h2>
+            <div id="rocket"></div>
         </div>
     </div>
 
@@ -31,11 +29,30 @@
     </footer>
     
 
+    <script type="text/x-handlebars-template" id="viewRocket">
+        
+        Name:
+        <span class="name" contentedittable="true">{{name}}</span>
+        <div class="size form-horizontal">
+            <button data-rel="-10" class="changeSize btn btn-small btn-primary">-</button>
+            <input class="size" type="number" value="{{size}}" />
+            <button data-rel="10" class="changeSize btn btn-small btn-success">+</button>
+            Remove:
+            <button class="deleteRow btn btn-small btn-danger">
+                <i class="icon-remove icon-white"></i>
+            </button>
+        </div>
+        Description:
+        <span class="desc" contenteditable="true">{{description}}</span>
+
+    </script>
+
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
     <script src="https://jashkenas.github.io/underscore/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
     
-    <script src="js/youtube.js"></script>
+    <script src="js/rocket/RocketModel.js"></script>
+    <script src="js/rocket/RocketView.js"></script>
 </body>
 </html>
