@@ -5,12 +5,17 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        pre {
+            white-space: normal;
+        }
+    </style>
 </head>
 <body>
 
     <div class="navbar navbar-inverse">
         <div class="navbar-inner">
-            <div class="container">
+            <div class="container" id="rockets">
                 
             </div>
         </div>
@@ -19,31 +24,47 @@
 
     <div class="container">
         <div class="hero-unit">
-            <h2>My Rocket</h2>
             <div id="rocket"></div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; IT4p.ru 2013</p>
-    </footer>
+    <script type="text/x-handlebars-template" id="listRocket">
+        <h2>My Rockets</h2>
+        <button class="btn btn-success addObject">add one</button>
+        <button class="btn btn-info toJSON">to JSON</button>
+        <table class="table table-striped">
+            <thead>
+                <th data-sort="name">Name</th>
+                <th data-sort="size">Size</th>
+                <th data-sort="description">Description</th>
+                <th>Actions</th>
+            </thead>
+            <tbody class="rocketsList"></tbody>
+        </table>
 
-    <script type="text/x-handlebars-template" id="viewRocket">
-        
-        Name:
-        <span class="name" contenteditable="true">{{name}}</span>
-        <div class="size form-horizontal">
-            <button data-rel="-10" class="changeSize btn btn-small btn-primary">-</button>
-            <input class="size" type="number" value="{{size}}" />
-            <button data-rel="10" class="changeSize btn btn-small btn-success">+</button>
-            Remove:
-            <button class="deleteRow btn btn-small btn-danger">
-                <i class="icon-remove icon-white">x</i>
-            </button>
+        <div class="rocketsTotal">
+            Total items: <span class="rockets-count">{{total}}</span>
+            Total size: <span class="rockets-size">{{size}}</span>
         </div>
-        Description:
-        <span class="desc" contenteditable="true">{{description}}</span>
 
+        <pre class="json-out"></pre>
+    </script>
+
+    <script type="text/x-handlebars-template" id="itemRocket">
+        <tr>
+            <td class="name" contenteditable="true">{{name}}</td>
+            <td class="size form-horizontal">
+                <button data-rel="-10" class="changeSize btn btn-small btn-promary">-</button>
+                <input class="size" type="number" value="{{size}}">
+                <button data-rel="10" class="changeSize btn btn-small btn-success">+</button>
+            </td>
+            <td class="desc" contenteditable="true">{{description}}</td>
+            <td>
+                <button class="deleteRow btn btn-small btn-danger">
+                    <i class="icon-remove icon-white">X</i>
+                </button>
+            </td>
+        </tr>
     </script>
 
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
@@ -51,20 +72,9 @@
     <script src="https://jashkenas.github.io/underscore/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
     
-    <script src="js/rocket/RocketModel.js"></script>
-    <script src="js/rocket/RocketView.js"></script>
-
-    <script>
-        $(function() {
-
-            var model1 = new RocketModel();
-
-            var view = new RocketView({
-                model: model1,
-                el: '#rocket',
-            });
-            
-        });
-    </script>
+    <script src="js/rocket/models/modelRocket.js"></script>
+    <script src="js/rocket/views/itemRocket.js"></script>
+    <script src="js/rocket/views/listRocket.js"></script>
+    <script src="js/rocket/app.js"></script>
 </body>
 </html>
